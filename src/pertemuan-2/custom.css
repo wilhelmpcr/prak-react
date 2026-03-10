@@ -1,0 +1,153 @@
+/* CYBERPUNK UI PRO */
+
+body{
+    background:#05070a;
+
+    background-image:
+        radial-gradient(#00ffff22 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    font-family:'Orbitron','Inter',sans-serif;
+    color:#d9faff;
+
+    margin:0;
+}
+
+/* container utama supaya lebar 50% */
+.container{
+    width:50%;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* title atas */
+.title{
+    font-size:2.2rem;
+    text-transform:uppercase;
+    font-weight:900;
+
+    color:#aafaff;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 30px #00ffff;
+
+    border-left:6px solid #00ffff;
+    padding-left:18px;
+
+    margin-bottom:30px;
+}
+
+/* frame gambar neon */
+.hero-img{
+    width:100%;
+    border-radius:8px;
+
+    border:2px solid #00ffff55;
+
+    box-shadow:
+        0 0 20px #00ffff44,
+        0 0 60px #00ffff22;
+
+    margin-bottom:30px;
+}
+
+/* card cyber */
+.card{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,255,255,0.08),
+            rgba(255,0,255,0.08)
+        );
+
+    backdrop-filter: blur(8px);
+
+    border:1px solid #00ffff44;
+
+    padding:30px;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 0 20px #00ffff22,
+        inset 0 0 30px #001c24;
+
+    position:relative;
+}
+
+/* tulisan status */
+.card::after{
+    content:"SYSTEM ONLINE";
+    position:absolute;
+    top:12px;
+    right:20px;
+
+    font-size:11px;
+    letter-spacing:2px;
+
+    color:#00ff9c;
+
+    text-shadow:
+        0 0 5px #00ff9c,
+        0 0 10px #00ff9c;
+}
+
+.card h1{
+    font-size:1.8rem;
+
+    margin-bottom:10px;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #00ffff;
+}
+
+.card p{
+    color:#9befff;
+    line-height:1.7;
+}
+
+/* box message */
+.message{
+
+    margin-top:20px;
+
+    border:1px solid #00ffff33;
+
+    padding:18px;
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,255,255,0.05),
+            rgba(255,0,255,0.05)
+        );
+
+    box-shadow:
+        inset 0 0 20px #001b24;
+}
+
+/* garis cyber */
+hr{
+    border:none;
+
+    height:2px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #00ffff,
+            #00ffff 6px,
+            transparent 6px,
+            transparent 12px
+        );
+
+    margin:25px 0;
+}
