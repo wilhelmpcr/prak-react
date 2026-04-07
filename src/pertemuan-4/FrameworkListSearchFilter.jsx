@@ -2,21 +2,35 @@ import { useState } from "react";
 import frameworkData from "./framework.json";
 
 export default function FrameworkListSearchFilter() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
+  /* Inisialisasi DataForm */
+  const [dataForm, setDataForm] = useState({
+    searchTerm: "",
+    selectedTag: "",
+    searchDEV: "",
+  });
 
-  const _searchTerm = searchTerm.toLowerCase();
+  /* Handle perubahan nilai input form */
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    });
+  };
+
+  // Mengakses searchTerm dari dalam objek dataForm
+  const _searchTerm = dataForm.searchTerm.toLowerCase();
 
   const filteredFrameworks = frameworkData.filter((framework) => {
-    // Menambahkan pengecekan tahun rilis ke dalam matchesSearch
     const matchesSearch =
       framework.name.toLowerCase().includes(_searchTerm) ||
       framework.description.toLowerCase().includes(_searchTerm) ||
       framework.details.developer.toLowerCase().includes(_searchTerm) ||
-      framework.details.releaseYear.toString().includes(_searchTerm); // <-- Perbaikan di sini
+      framework.details.releaseYear.toString().includes(_searchTerm);
 
-    const matchesTag = selectedTag
-      ? framework.tags.includes(selectedTag)
+    // Mengakses selectedTag dari dalam objek dataForm
+    const matchesTag = dataForm.selectedTag
+      ? framework.tags.includes(dataForm.selectedTag)
       : true;
 
     return matchesSearch && matchesTag;
@@ -40,17 +54,20 @@ export default function FrameworkListSearchFilter() {
       <div className="max-w-5xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative group">
           <input
-            onChange={(e) => setSearchTerm(e.target.value)}
+            name="searchTerm" // Nama sesuai dengan key di dataForm
+            value={dataForm.searchTerm}
+            onChange={handleChange}
             type="text"
-            // Placeholder diupdate agar user tahu bisa cari tahun
-            placeholder="Search name, developer, or year (e.g. 2013)..." 
+            placeholder="Search name, developer, or year (e.g. 2013)..."
             className="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-yellow-500 outline-none transition-all shadow-sm font-bold placeholder:text-gray-400 italic"
           />
           <div className="absolute right-3 top-3 text-yellow-600">🔍</div>
         </div>
 
         <select
-          onChange={(e) => setSelectedTag(e.target.value)}
+          name="selectedTag" // Diubah dari searchTerm ke selectedTag
+          value={dataForm.selectedTag}
+          onChange={handleChange}
           className="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-yellow-500 outline-none transition-all shadow-sm font-bold text-gray-700 appearance-none cursor-pointer"
         >
           <option value="">All Tags</option>
@@ -70,6 +87,7 @@ export default function FrameworkListSearchFilter() {
               key={item.id}
               className="group relative overflow-hidden bg-white border-b-4 border-yellow-500 rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
+              {/* ... (Konten Card Tetap Sama) ... */}
               <div className="p-6 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -95,41 +113,24 @@ export default function FrameworkListSearchFilter() {
                 <div className="mt-auto space-y-4">
                   <div className="flex gap-2">
                     <div className="flex-1 bg-gray-50 border border-gray-100 p-2 rounded-lg text-center">
-                      <p className="text-[9px] text-gray-400 font-bold uppercase">
-                        Dev Team
-                      </p>
-                      <p className="text-xs font-black text-gray-700">
-                        {item.details.developer}
-                      </p>
+                      <p className="text-[9px] text-gray-400 font-bold uppercase">Dev Team</p>
+                      <p className="text-xs font-black text-gray-700">{item.details.developer}</p>
                     </div>
                     <div className="flex-1 bg-gray-50 border border-gray-100 p-2 rounded-lg text-center">
-                      <p className="text-[9px] text-gray-400 font-bold uppercase">
-                        Released
-                      </p>
-                      <p className="text-xs font-black text-gray-700">
-                        {item.details.releaseYear}
-                      </p>
+                      <p className="text-[9px] text-gray-400 font-bold uppercase">Released</p>
+                      <p className="text-xs font-black text-gray-700">{item.details.releaseYear}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex flex-wrap gap-1">
                       {item.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="text-[9px] font-bold text-yellow-700 bg-yellow-50 border border-yellow-200 px-2 py-0.5 rounded"
-                        >
+                        <span key={index} className="text-[9px] font-bold text-yellow-700 bg-yellow-50 border border-yellow-200 px-2 py-0.5 rounded">
                           {tag.toUpperCase()}
                         </span>
                       ))}
                     </div>
-
-                    <a
-                      href={item.details.officialWebsite}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-gray-800 hover:to-gray-900 text-white text-[11px] font-black py-2.5 px-6 rounded-lg shadow-[0_4px_15px_rgba(202,138,4,0.3)] transition-all uppercase tracking-wider"
-                    >
+                    <a href={item.details.officialWebsite} target="_blank" rel="noreferrer" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-gray-800 hover:to-gray-900 text-white text-[11px] font-black py-2.5 px-6 rounded-lg shadow-[0_4px_15px_rgba(202,138,4,0.3)] transition-all uppercase tracking-wider">
                       Launch Now
                     </a>
                   </div>
@@ -140,7 +141,7 @@ export default function FrameworkListSearchFilter() {
           ))
         ) : (
           <div className="col-span-full text-center py-10 font-bold text-gray-400 italic">
-            No VIP Framework found for "{searchTerm}"...
+            No VIP Framework found for "{dataForm.searchTerm}"...
           </div>
         )}
       </div>
