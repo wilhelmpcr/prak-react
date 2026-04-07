@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import frameworkData from "./framework.json";
 import './tailwind.css';
-import FrameworkList from "./FrameworkList";
+import FrameworkListSearchFilter from "./FrameworkListSearchFilter";
 
 
 createRoot(document.getElementById("root"))
@@ -9,7 +9,7 @@ createRoot(document.getElementById("root"))
         <div>
            {/* <TailwindCSS/> */}
            {/* <UserForm/> */}
-           <FrameworkList/>
+           <FrameworkListSearchFilter/>
            
         </div>
     )
