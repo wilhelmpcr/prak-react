@@ -3,8 +3,7 @@ import { useState } from "react";
 export default function HitungGajiForm() {
 
     const [gaji, setGaji] = useState("");
-
-    const pajak = 0.11; // 11% pajak
+    const pajak = 0.11; 
     const totalGaji = gaji - (gaji * pajak);
     return (
         <div className="flex flex-col items-center justify-center m-5 p-5 bg-gray-100">
