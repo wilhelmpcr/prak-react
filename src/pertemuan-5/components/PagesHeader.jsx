@@ -1,26 +1,29 @@
-export default function PageHeader() {
-    return (
-        /* 2. Terapkan layout dan flexbox untuk container utama */
-        <div id="pageheader-container" className="flex items-center justify-between p-4">
-            
-            {/* 3. Styling untuk Sisi Kiri */}
-            <div id="pageheader-left" className="flex flex-col">
-                <span id="pageheader-title" className="text-3xl font-semibold">
-                    Dashboard
-                </span>
-                <div id="breadcrumb-links" className="flex items-center font-medium space-x-2 mt-2">
-                    <span id="breadcrumb-home" className="text-gray-500">Dashboard</span>
-                    <span id="breadcrumb-separator" className="text-gray-500">/</span>
-                    <span id="breadcrumb-current" className="text-gray-500">Order List</span>
-                </div>
-            </div>
+import { MdAdd, MdRefresh } from "react-icons/md";
 
-            {/* 4. Styling untuk Sisi Kanan (Tombol) */}
-            <div id="action-button">
-                <button id="add-button" className="bg-green-600 text-white px-4 py-2 rounded-lg transition-colors hover:bg-green-700">
-                    Add Button
-                </button>
-            </div>
+export default function PagesHeader() {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
+      <div>
+        <h1 className="text-3xl font-bold text-gray-800 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+          Dashboard
+        </h1>
+        <div className="flex items-center gap-2 text-sm text-teks-samping mt-1">
+          <span className="hover:text-hijau cursor-pointer transition-colors">Dashboard</span>
+          <span>/</span>
+          <span className="text-gray-600 font-medium">Overview</span>
         </div>
-    );
+      </div>
+      
+      <div className="flex gap-3">
+        <button className="px-5 py-2.5 border border-garis rounded-xl text-teks-samping hover:bg-gray-50 hover:border-hijau hover:text-hijau transition-all duration-300 flex items-center gap-2">
+          <MdRefresh className="text-lg" />
+          Refresh
+        </button>
+        <button className="px-5 py-2.5 bg-gradient-to-r from-hijau to-emerald-600 text-white rounded-xl hover:shadow-lg hover:shadow-hijau/30 transition-all duration-300 flex items-center gap-2">
+          <MdAdd className="text-lg" />
+          Add New
+        </button>
+      </div>
+    </div>
+  );
 }
