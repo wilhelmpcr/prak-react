@@ -1,11 +1,18 @@
 import { createRoot } from "react-dom/client";
 import './assets/tailwind.css';
-
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import Dashboard from "./components/Dashboard";
 
 createRoot(document.getElementById("root"))
     .render(
-       <div className=" flex flex-col ">
-      <span className="font-poppins font-[1000] text-[48px]">Sedap<b className="text-green-500">.</b></span>
-      <span className="text-gray-400 font-semibold font-barlow">Modern Admin Dashboard</span>
-  </div>
+        <div id="app-container" className="bg-gray-100 min-h-screen flex">
+            <div id="layout-wrapper" className="flex flex-row flex-1">
+                <Sidebar />
+                <div id="main-content" className="flex-1 p-4">
+                    <Header />
+                    <Dashboard />
+                </div>
+            </div>
+        </div>
     )
