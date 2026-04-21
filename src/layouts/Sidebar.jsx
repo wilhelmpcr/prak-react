@@ -1,18 +1,21 @@
 import { MdDashboard, MdAdd } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineUserGroup } from "react-icons/hi";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
-  const [activeMenu, setActiveMenu] = useState("Dashboard");
 
   const menus = [
     { id: "menu-1", name: "Dashboard", icon: MdDashboard, path: "/" },
     { id: "menu-2", name: "Orders", icon: AiOutlineShoppingCart, path: "/orders" },
     { id: "menu-3", name: "Customers", icon: HiOutlineUserGroup, path: "/customers" },
   ];
+      const menuClass = ({ isActive }) =>
+        `flex cursor-pointer items-center rounded-xl p-4  space-x-2
+        ${isActive ? 
+            "text-hijau bg-green-200 font-extrabold" : 
+            "text-gray-600 hover:text-hijau hover:bg-green-200 hover:font-extrabold"
+        }`
 
   return (
     <div className="flex flex-col min-h-screen w-72 bg-white shadow-2xl sticky top-0">
@@ -39,23 +42,23 @@ export default function Sidebar() {
         <ul className="space-y-2">
           {menus.map((menu) => {
             const Icon = menu.icon;
-            const isActive = activeMenu === menu.name;
 
             return (
               <li key={menu.id}>
-                <Link
+                <NavLink
                   to={menu.path}
-                  onClick={() => setActiveMenu(menu.name)}
-                  className={`flex items-center rounded-xl p-4 font-medium transition-all duration-200
-                  ${
-                    isActive
-                      ? "bg-green-200 text-hijau font-extrabold"
-                      : "text-gray-600 hover:bg-green-200 hover:text-hijau"
-                  }`}
+                  className={({ isActive }) =>
+                    `flex items-center rounded-xl p-4 font-medium transition-all duration-200
+                    ${
+                      isActive
+                        ? "bg-green-200 text-hijau font-extrabold"
+                        : "text-gray-600 hover:bg-green-200 hover:text-hijau"
+                    }`
+                  }
                 >
                   <Icon className="mr-4 text-xl" />
                   {menu.name}
-                </Link>
+                </NavLink>
               </li>
             );
           })}

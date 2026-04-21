@@ -1,11 +1,11 @@
 import { MdAdd, MdRefresh } from "react-icons/md";
 
-export default function PagesHeader() {
+export default function PagesHeader(props) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-800 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-          Dashboard
+          {props.title}
         </h1>
         <div className="flex items-center gap-2 text-sm text-teks-samping mt-1">
           <span className="hover:text-hijau cursor-pointer transition-colors">Dashboard</span>
