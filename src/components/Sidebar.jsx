@@ -1,4 +1,4 @@
-import { MdDashboard, MdAdd, MdErrorOutline } from "react-icons/md"; // Tambah icon error
+import { MdDashboard, MdAdd, MdErrorOutline, MdOutlineInventory2 } from "react-icons/md"; // Tambah MdOutlineInventory2
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
@@ -8,19 +8,15 @@ export default function Sidebar() {
   const menus = [
     { id: "menu-1", name: "Dashboard", icon: MdDashboard, path: "/" },
     { id: "menu-2", name: "Orders", icon: AiOutlineShoppingCart, path: "/orders" },
+    // Menu Produk Baru
+    { id: "menu-7", name: "Products", icon: MdOutlineInventory2, path: "/products" }, 
     { id: "menu-3", name: "Customers", icon: HiOutlineUserGroup, path: "/customers" },
-    // Tambahan menu error sesuai instruksi gambar
+    
+    // Tambahan menu error
     { id: "menu-4", name: "Error 400", icon: MdErrorOutline, path: "/error-400" },
     { id: "menu-5", name: "Error 401", icon: MdErrorOutline, path: "/error-401" },
     { id: "menu-6", name: "Error 403", icon: MdErrorOutline, path: "/error-403" },
   ];
-
-  const menuClass = ({ isActive }) =>
-    `flex cursor-pointer items-center rounded-xl p-4  space-x-2
-    ${isActive ? 
-        "text-hijau bg-green-200 font-extrabold" : 
-        "text-gray-600 hover:text-hijau hover:bg-green-200 hover:font-extrabold"
-    }`
 
   return (
     <div className="flex flex-col min-h-screen w-72 bg-white shadow-2xl sticky top-0">
@@ -39,7 +35,7 @@ export default function Sidebar() {
       </div>
 
       {/* Menu */}
-      <div className="flex-1 px-4 py-8 overflow-y-auto"> {/* Tambah overflow agar bisa scroll jika menu banyak */}
+      <div className="flex-1 px-4 py-8 overflow-y-auto">
         <p className="text-xs font-semibold text-teks-samping px-4 mb-4 tracking-wider">
           MAIN MENU
         </p>
