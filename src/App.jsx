@@ -23,6 +23,7 @@ const Register = React.lazy(() => import("./pages/auth/Register"));
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const ProductsDetail = React.lazy(() => import("./pages/ProductsDetail.jsx"));
+const Components = React.lazy(() => import("./pages/Components"));
 
 function App() {
   const [count, setCount] = useState(0);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/customers" element={<Customer />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductsDetail />} />
+          <Route path="/components" element={<Components />} />
           {/* Halaman Error 400 (Bad Request) */}
           <Route
             path="/error-400"

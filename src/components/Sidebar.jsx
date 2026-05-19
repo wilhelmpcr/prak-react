@@ -1,4 +1,4 @@
-import { MdDashboard, MdAdd, MdErrorOutline, MdOutlineInventory2 } from "react-icons/md"; // Tambah MdOutlineInventory2
+import { MdDashboard, MdAdd, MdErrorOutline, MdOutlineInventory2, MdOutlineWidgets } from "react-icons/md"; // Tambah MdOutlineInventory2, MdOutlineWidgets
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
@@ -11,6 +11,7 @@ export default function Sidebar() {
     // Menu Produk Baru
     { id: "menu-7", name: "Products", icon: MdOutlineInventory2, path: "/products" }, 
     { id: "menu-3", name: "Customers", icon: HiOutlineUserGroup, path: "/customers" },
+    { id: "menu-8", name: "Components", icon: MdOutlineWidgets, path: "/components" },
     
     // Tambahan menu error
     { id: "menu-4", name: "Error 400", icon: MdErrorOutline, path: "/error-400" },
