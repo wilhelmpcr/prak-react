@@ -13,6 +13,7 @@ export default function Sidebar() {
     { id: "menu-3", name: "Customers", icon: HiOutlineUserGroup, path: "/customers" },
     { id: "menu-8", name: "Components", icon: MdOutlineWidgets, path: "/components" },
     { id: "menu-xyz", name: "Fitur XYZ", icon: MdOutlineRestaurantMenu, path: "/fitur-xyz" },
+    { id: "menu-7", name: "Notes", icon: MdOutlineInventory2, path: "/Notes" },
     
     // Tambahan menu error
     { id: "menu-4", name: "Error 400", icon: MdErrorOutline, path: "/error-400" },

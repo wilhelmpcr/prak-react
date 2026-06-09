@@ -25,6 +25,7 @@ const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const ProductsDetail = React.lazy(() => import("./pages/ProductsDetail.jsx"));
 const Components = React.lazy(() => import("./pages/Components"));
 const FiturXz = React.lazy(() => import("./pages/FiturXyz"));
+const Notes = React.lazy(() => import("./pages/Notes"));
 
 function App() {
   const [count, setCount] = useState(0);
@@ -46,6 +47,7 @@ function App() {
           <Route path="/products/:id" element={<ProductsDetail />} />
           <Route path="/components" element={<Components />} />
           <Route path="/fitur-xyz" element={<FiturXz />} />
+          <Route path="/Notes" element={<Notes />} />
           {/* Halaman Error 400 (Bad Request) */}
           <Route
             path="/error-400"
