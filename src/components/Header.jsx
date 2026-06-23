@@ -1,12 +1,15 @@
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FcAreaChart } from "react-icons/fc";
 import { SlSettings } from "react-icons/sl";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
+  const { profile, logout } = useAuth();
+
   return (
     <div
       id="header-container"
-      className="flex justify-between items-center p-4"
+      className="flex justify-between items-center p-4 bg-white border-b border-gray-100"
     >
       {/* Search Bar */}
       <div
@@ -65,14 +68,26 @@ export default function Header() {
           id="profile-container"
           className="flex items-center space-x-4 border-l pl-4 border-gray-300"
         >
-          <span id="profile-text">
-            Hello, <b>Wilhelm samto tamba</b>
+          <span id="profile-text" className="text-right flex flex-col">
+            <span className="font-bold text-gray-800">{profile?.full_name || "Guest User"}</span>
+            <span className="text-[10px] text-gray-400 capitalize">
+              {profile?.role === "member"
+                ? `${profile.role} (${profile.tier} - ${profile.points} pts)`
+                : profile?.role || "guest"}
+            </span>
           </span>
           <img
             id="profile-avatar"
-            src="https://avatar.iran.liara.run/public/28"
+            src={`https://avatar.iran.liara.run/public/${profile?.role === "admin" ? "job/designer/33" : "28"}`}
             className="w-10 h-10 rounded-full"
+            alt="Avatar"
           />
+          <button
+            onClick={() => logout()}
+            className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-xl text-xs font-bold cursor-pointer transition-colors border border-red-100"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

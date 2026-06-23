@@ -1,12 +1,12 @@
-import axios from "axios";
 import { useState } from "react";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
-import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Login() {
-  /* navigate, state & handleChange*/
-  const navigate = useNavigate();
+  /* state & handleChange*/
+  const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [dataForm, setDataForm] = useState({
@@ -25,35 +25,17 @@ export default function Login() {
   /* process form */
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
-    setError(false);
+    setError("");
 
-    axios
-      .post("https://dummyjson.com/user/login", {
-        username: dataForm.email,
-        password: dataForm.password,
-      })
-      .then((response) => {
-        // Jika status bukan 200, tampilkan pesan error
-        if (response.status !== 200) {
-          setError(response.data.message);
-          return;
-        }
-
-        // Redirect ke dashboard jika login sukses
-        navigate("/");
-      })
-      .catch((err) => {
-        if (err.response) {
-          setError(err.response.data.message || "An error occurred");
-        } else {
-          setError(err.message || "An unknown error occurred");
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      await login(dataForm.email, dataForm.password);
+      // Tidak perlu navigate("/") secara manual.
+      // PublicRoute akan otomatis redirect ke "/" saat user state berubah
+    } catch (err) {
+      setError(err.message || "An error occurred during login");
+      setLoading(false);
+    }
   };
   /* error & loading status */
   const errorInfo = error ? (
@@ -75,6 +57,9 @@ export default function Login() {
       <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
         Welcome Back 👋
       </h2>
+
+      {errorInfo}
+      {loadingInfo}
 
       <form onSubmit={handleSubmit}>
         <div className="mb-5">
